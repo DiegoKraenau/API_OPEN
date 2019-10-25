@@ -23,7 +23,7 @@ public class Usuario implements Serializable {/**
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer usuarioId;
+	private Integer Id;
 	
 	@Column(name="userName", nullable = false)
 	private String userName;

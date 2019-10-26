@@ -42,16 +42,6 @@ public class ServicioServiceImpl implements IServicioService{
 		return serviceRepository.findAll();
 	}
 
-	@Override
-	public List<Servicio> findByserviceName(String serviceName) throws Exception {
-		// TODO Auto-generated method stub
-		return serviceRepository.findByserviceName(serviceName);
-	}
-
-	@Override
-	public List<Servicio> findByserviceCategory(String serviceCategory) throws Exception {
-		// TODO Auto-generated method stub
-		return serviceRepository.findByserviceCategory(serviceCategory);
-	}
+	
 
 }

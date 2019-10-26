@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,9 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.RapiSolver.Api.entities.Servicio;
-import com.RapiSolver.Api.entities.Supplier;
 import com.RapiSolver.Api.services.*;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -39,8 +36,6 @@ public class ServicioController {
 	@Autowired
 	private IServicioService servicioService;
 	
-	@Autowired
-	private ICategoryService servicioCategory;
 	
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -77,6 +72,7 @@ public class ServicioController {
 			return new ResponseEntity<Servicio>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
 	
 	
 	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

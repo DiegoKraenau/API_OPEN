@@ -18,9 +18,8 @@ import lombok.Data;
 @Entity
 @Table(name="role")
 @Data
-public class Role implements Serializable{/**
-	 * 
-	 */
+public class Role implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id

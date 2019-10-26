@@ -17,11 +17,10 @@ import lombok.Data;
 
 
 @Entity
-@Table(name="serviceCategory")
+@Table(name="category")
 @Data
-public class ServiceCategory implements Serializable{/**
-	 * 
-	 */
+public class Category implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -34,9 +33,7 @@ public class ServiceCategory implements Serializable{/**
 	@Column(name="categoryDescription", nullable = false)
 	private String categoryDescription;
 	
-	@OneToMany(mappedBy = "serviceCategory",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "category",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Servicio> servicios;
 	
-	
-
 }

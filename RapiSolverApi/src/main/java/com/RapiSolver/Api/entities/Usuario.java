@@ -16,26 +16,21 @@ import lombok.Data;
 @Entity
 @Table(name="usuario")
 @Data
-public class Usuario implements Serializable {/**
-	 * 
-	 */
+public class Usuario implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
 	
-	@Column(name="userName", nullable = false)
+	@Column(name="username", nullable = false)
 	private String userName;
 	
-	@Column(name="userPassword", nullable = false)
+	@Column(name="userpassword", nullable = false)
 	private String userPassword;
 	
 	@ManyToOne
 	@JoinColumn(name="role_id")
 	private Role role;
-	
-	
-	
-
 }

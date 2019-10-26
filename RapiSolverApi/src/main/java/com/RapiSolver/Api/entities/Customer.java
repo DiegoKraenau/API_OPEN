@@ -16,9 +16,8 @@ import lombok.Data;
 @Entity
 @Table(name="customer")
 @Data
-public class Customer  implements Serializable {/**
-	 * 
-	 */
+public class Customer  implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -43,11 +42,9 @@ public class Customer  implements Serializable {/**
 	@Column(name="gender", nullable = false)
     private String gender;
 
-	
 	@OneToOne
 	@JoinColumn(name="usuario_id")
     private Usuario usuario;
-	
 	
 	@OneToOne
 	@JoinColumn(name="location_id")

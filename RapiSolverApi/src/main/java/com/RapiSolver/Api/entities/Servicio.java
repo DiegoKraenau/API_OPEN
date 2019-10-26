@@ -21,9 +21,8 @@ import lombok.Data;
 @Entity
 @Table(name="servicio")
 @Data
-public class Servicio implements Serializable {/**
-	 * 
-	 */
+public class Servicio implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -40,8 +39,8 @@ public class Servicio implements Serializable {/**
 	private String cost;
 	
 	@ManyToOne
-	@JoinColumn(name="serviceCategory_id")
-	private ServiceCategory serviceCategory;
+	@JoinColumn(name="category_id")
+	private Category category;
 	
 	@OneToMany(mappedBy = "servicioDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<DetalleServiceSupplier> listaDetails;

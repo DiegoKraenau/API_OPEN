@@ -3,7 +3,7 @@ package com.RapiSolver.Api.entities;
 import javax.persistence.Column;
 
 
-public  abstract class  Persona {
+public abstract class Persona {
 
 	@Column(name="name", nullable = false)
 	private String name;
@@ -22,7 +22,5 @@ public  abstract class  Persona {
 
 	@Column(name="gender", nullable = false)
     private String gender;
-
-
 
 }

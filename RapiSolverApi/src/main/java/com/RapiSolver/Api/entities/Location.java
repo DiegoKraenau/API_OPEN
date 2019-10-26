@@ -18,9 +18,8 @@ import lombok.Data;
 @Entity
 @Table(name="location")
 @Data
-public class Location implements Serializable{/**
-	 * 
-	 */
+public class Location implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id

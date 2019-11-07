@@ -21,9 +21,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.RapiSolver.Api.controller.ModelView.DetailModelView;
+import com.RapiSolver.Api.entities.Customer;
 import com.RapiSolver.Api.entities.DetalleServiceSupplier;
 import com.RapiSolver.Api.entities.Role;
+import com.RapiSolver.Api.entities.Servicio;
+import com.RapiSolver.Api.entities.Supplier;
+import com.RapiSolver.Api.services.ICategoryService;
 import com.RapiSolver.Api.services.IDetalleServiceSupplierService;
+import com.RapiSolver.Api.services.IServicioService;
+import com.RapiSolver.Api.services.ISupplierService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,19 +45,54 @@ public class DetalleServiceSupplierController {
 	@Autowired
 	private IDetalleServiceSupplierService detalleService;
 	
+	@Autowired
+	private ICategoryService categoryService;
+	
+	@Autowired
+	private IServicioService servicioService;
+	
+	@Autowired
+	private ISupplierService supplierService;
+	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Listar Detalles", notes="Método para listar todos los Detalles")
 	@ApiResponses({
 		@ApiResponse(code=201, message="Detalles encontrados"),
 		@ApiResponse(code=404, message="Detalles no encontrados")
 	})
-	public ResponseEntity<List<DetalleServiceSupplier>>findAll(){
+	public ResponseEntity<List<DetailModelView>>findAll(){
 		try {
 			List<DetalleServiceSupplier> detalles = new ArrayList<>();
 			detalles = detalleService.findAll();
-			return new ResponseEntity<List<DetalleServiceSupplier>>(detalles, HttpStatus.OK);
+			List<DetailModelView> detallesGroup=new ArrayList<>();
+			
+			for (DetalleServiceSupplier detalle : detalles) {
+				DetailModelView d1=new DetailModelView();
+				d1.setServiceDetailsId(detalle.getDetailId());
+				d1.setSupplierId(detalle.getSupplierDetail().getId());
+				d1.setServicioId(detalle.getServicioDetail().getId());
+				d1.setName(detalle.getSupplierDetail().getName());
+				d1.setLastNam(detalle.getSupplierDetail().getLastName());
+				d1.setEmail(detalle.getSupplierDetail().getEmail());
+				d1.setPhone(detalle.getSupplierDetail().getPhone());
+				d1.setAge(detalle.getSupplierDetail().getAge());
+				d1.setGenger(detalle.getSupplierDetail().getGender());
+				d1.setUsuarioId(detalle.getSupplierDetail().getUsuario().getId());
+				d1.setLocationId(detalle.getSupplierDetail().getLocation().getId());
+				d1.setUserName(detalle.getSupplierDetail().getUsuario().getUserName());
+				d1.setCountry(detalle.getSupplierDetail().getLocation().getCountry());
+				d1.setServiceName(detalle.getServicioDetail().getName());
+				d1.setDescription(detalle.getServicioDetail().getDescription());
+				d1.setCost(detalle.getServicioDetail().getCost());
+				d1.setServiceCategoryId(detalle.getServicioDetail().getCategory().getId());
+				d1.setCategoryName(detalle.getServicioDetail().getCategory().getCategoryName());
+				
+				detallesGroup.add(d1);
+			}
+			
+			return new ResponseEntity<List<DetailModelView>>(detallesGroup, HttpStatus.OK);
 		}catch(Exception e){
-			return new ResponseEntity<List<DetalleServiceSupplier>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<DetailModelView>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
@@ -61,15 +103,36 @@ public class DetalleServiceSupplierController {
 		@ApiResponse(code=201, message="Detalle encontrado"),
 		@ApiResponse(code=404, message="Detalle no encontrado")
 	})
-	public ResponseEntity<DetalleServiceSupplier> findById(@PathVariable("id") Integer id){
+	public ResponseEntity<DetailModelView> findById(@PathVariable("id") Integer id){
 		try {
-			Optional<DetalleServiceSupplier> detalle = detalleService.findById(id);
-			if(!detalle.isPresent()) {
-				return new ResponseEntity<DetalleServiceSupplier>(HttpStatus.NOT_FOUND);
+			Optional<DetalleServiceSupplier> detalle1 = detalleService.findById(id);
+			DetalleServiceSupplier detalle=detalle1.get();
+			DetailModelView d1=new DetailModelView();
+			d1.setServiceDetailsId(detalle.getDetailId());
+			d1.setSupplierId(detalle.getSupplierDetail().getId());
+			d1.setServicioId(detalle.getServicioDetail().getId());
+			d1.setName(detalle.getSupplierDetail().getName());
+			d1.setLastNam(detalle.getSupplierDetail().getLastName());
+			d1.setEmail(detalle.getSupplierDetail().getEmail());
+			d1.setPhone(detalle.getSupplierDetail().getPhone());
+			d1.setAge(detalle.getSupplierDetail().getAge());
+			d1.setGenger(detalle.getSupplierDetail().getGender());
+			d1.setUsuarioId(detalle.getSupplierDetail().getUsuario().getId());
+			d1.setLocationId(detalle.getSupplierDetail().getLocation().getId());
+			d1.setUserName(detalle.getSupplierDetail().getUsuario().getUserName());
+			d1.setCountry(detalle.getSupplierDetail().getLocation().getCountry());
+			d1.setServiceName(detalle.getServicioDetail().getName());
+			d1.setDescription(detalle.getServicioDetail().getDescription());
+			d1.setCost(detalle.getServicioDetail().getCost());
+			d1.setServiceCategoryId(detalle.getServicioDetail().getCategory().getId());
+			d1.setCategoryName(detalle.getServicioDetail().getCategory().getCategoryName());
+			
+			if(!detalle1.isPresent()) {
+				return new ResponseEntity<DetailModelView>(HttpStatus.NOT_FOUND);
 			}
-			return new ResponseEntity<DetalleServiceSupplier>(detalle.get(), HttpStatus.OK);
+			return new ResponseEntity<DetailModelView>(d1, HttpStatus.OK);
 		}catch(Exception e){
-			return new ResponseEntity<DetalleServiceSupplier>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<DetailModelView>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
@@ -80,15 +143,47 @@ public class DetalleServiceSupplierController {
 		@ApiResponse(code=201, message="Detalle creado correctamente"),
 		@ApiResponse(code=400, message="Solicitud de creación inválida")
 	})
-	public ResponseEntity<Role> insertDetalle(@Valid @RequestBody DetalleServiceSupplier detalle){
+	public ResponseEntity<DetailModelView> insertDetalle(@Valid @RequestBody DetailModelView detalle){
+	
 		try {
 			DetalleServiceSupplier detalleNew = new DetalleServiceSupplier();
-			detalleNew = detalleService.save(detalle);
+			//Agregamos el servicio
+			Servicio s1=new Servicio();
+			Servicio s1_nuevo=new Servicio();
+			s1.setId(detalle.getServicioId());
+			s1.setCost(detalle.getCost());
+			s1.setDescription(detalle.getDescription());
+			s1.setName(detalle.getServiceName());
+			s1.setCategory(categoryService.findByCategoryName(detalle.getCategoryName()));
+			s1_nuevo=servicioService.save(s1);
+			
+	
+			//Obtenemos el supplier que tiene el ID user
+			List<Supplier> suppliers=new ArrayList<>();
+			suppliers=supplierService.findAll();
+			Supplier sup1=new Supplier();
+			for (Supplier supplier : suppliers) {
+				
+				if(supplier.getUsuario().getId()==detalle.getUsuarioId()) {
+					
+					sup1=supplier;
+				}
+			}
+			
+			
+			
+			detalleNew.setServicioDetail(s1_nuevo);
+			detalleNew.setSupplierDetail(sup1);
+			
+			
+			DetalleServiceSupplier detalleNew2 = new DetalleServiceSupplier();
+			
+			detalleNew2 = detalleService.save(detalleNew);
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-					.path("/{id}").buildAndExpand(detalleNew.getDetailId()).toUri();
+					.path("/{id}").buildAndExpand(detalleNew2.getDetailId()).toUri();
 			return ResponseEntity.created(location).build();
 		}catch(Exception e){
-			return new ResponseEntity<Role>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<DetailModelView>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

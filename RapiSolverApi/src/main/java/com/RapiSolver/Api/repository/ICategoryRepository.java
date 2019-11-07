@@ -8,4 +8,5 @@ import com.RapiSolver.Api.entities.Category;
 @Repository
 public interface ICategoryRepository extends JpaRepository<Category, Integer>{
 
+	Category findByCategoryName(String categoryName) throws Exception;
 }

@@ -44,4 +44,10 @@ public class CategoryServiceImpl implements ICategoryService{
 		return categoryRepository.findAll();
 	}
 
+	@Override
+	public Category findByCategoryName(String categoryName) throws Exception {
+		// TODO Auto-generated method stub
+		return categoryRepository.findByCategoryName(categoryName);
+	}
+
 }

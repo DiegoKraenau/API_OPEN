@@ -19,6 +19,7 @@ public class ServicioServiceImpl implements IServicioService{
 	private IServiceRepository serviceRepository;
 
 	@Override
+	@Transactional
 	public Servicio save(Servicio t) throws Exception {
 		// TODO Auto-generated method stub
 		return serviceRepository.save(t);

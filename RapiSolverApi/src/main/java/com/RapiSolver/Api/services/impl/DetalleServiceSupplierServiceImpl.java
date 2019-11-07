@@ -19,6 +19,7 @@ public class DetalleServiceSupplierServiceImpl implements IDetalleServiceSupplie
 	private IDetalleServiceSupplierRepository detalleServiceSupplierRepository;
 
 	@Override
+	@Transactional
 	public DetalleServiceSupplier save(DetalleServiceSupplier t) throws Exception {
 		// TODO Auto-generated method stub
 		return detalleServiceSupplierRepository.save(t);

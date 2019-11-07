@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -32,6 +34,7 @@ public class Role implements Serializable{
 	
 	@Column(name="publish", nullable = false)
 	private boolean publish;
+	
 	
 	@OneToMany(mappedBy = "role",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Usuario> usuarios;

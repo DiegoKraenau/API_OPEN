@@ -1,0 +1,5 @@
+package com.RapiSolver.Api.controller.ModelView;
+
+public class CategoryModelView {
+
+}

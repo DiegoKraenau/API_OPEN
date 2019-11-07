@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.RapiSolver.Api.controller.ModelView.UsuarioModelView;
+import com.RapiSolver.Api.entities.Cliente;
 import com.RapiSolver.Api.entities.Role;
 import com.RapiSolver.Api.entities.Usuario;
+import com.RapiSolver.Api.services.IClienteService;
 import com.RapiSolver.Api.services.IUsuarioService;
 
 import io.swagger.annotations.Api;
@@ -37,7 +40,7 @@ public class UsuarioController {
 
 	@Autowired
 	private IUsuarioService usuarioService;
-	
+	/*
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Listar Usuarios", notes="Método para listar todos los Usuarios")
 	@ApiResponses({
@@ -51,6 +54,34 @@ public class UsuarioController {
 			return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 		}catch(Exception e){
 			return new ResponseEntity<List<Usuario>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}*/
+	
+
+	
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Listar Clientes", notes="Método para listar todos los clientes")
+	@ApiResponses({
+		@ApiResponse(code=201, message="Clientes encontrados"),
+		@ApiResponse(code=404, message="Clientes no encontrados")
+	})
+	public ResponseEntity<List<UsuarioModelView>>findAll(){
+		try {
+			List<Usuario> usuarios = new ArrayList<>();
+			usuarios = usuarioService.findAll();
+			List<UsuarioModelView> usuariosGroup=new ArrayList<>();
+			
+			for (Usuario usuario : usuarios) {
+				UsuarioModelView u1=new UsuarioModelView();
+				u1.setId(usuario.getId());
+				u1.setCorreo(usuario.getUserName());
+				
+				usuariosGroup.add(u1);
+			}
+			
+			return new ResponseEntity<List<UsuarioModelView>>(usuariosGroup, HttpStatus.OK);
+		}catch(Exception e){
+			return new ResponseEntity<List<UsuarioModelView>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

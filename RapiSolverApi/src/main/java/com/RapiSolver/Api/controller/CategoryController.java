@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.RapiSolver.Api.controller.ModelView.CategoryModelView;
 import com.RapiSolver.Api.entities.Category;
 import com.RapiSolver.Api.services.ICategoryService;
 
@@ -43,13 +44,23 @@ public class CategoryController {
 		@ApiResponse(code=201, message="Categorias encontradas"),
 		@ApiResponse(code=404, message="Categorias no encontradas")
 	})
-	public ResponseEntity<List<Category>>findAll(){
+	public ResponseEntity<List<CategoryModelView>>findAll(){
 		try {
 			List<Category> category = new ArrayList<>();
 			category = categoryService.findAll();
-			return new ResponseEntity<List<Category>>(category, HttpStatus.OK);
+			List<CategoryModelView> categoryGroup=new ArrayList<>();
+			for (Category categoria : category) {
+				CategoryModelView c1=new CategoryModelView();
+				c1.setId(categoria.getId());
+				c1.setCategoryName(categoria.getCategoryName());
+				c1.setCategoryDescription(categoria.getCategoryDescription());
+				
+				categoryGroup.add(c1);
+			}
+			
+			return new ResponseEntity<List<CategoryModelView>>(categoryGroup, HttpStatus.OK);
 		}catch(Exception e){
-			return new ResponseEntity<List<Category>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<CategoryModelView>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

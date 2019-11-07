@@ -40,7 +40,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Override
 	public List<Usuario> findAll() throws Exception {
-		// TODO Auto-generated method stub
+		
 		return usuarioRepository.findAll();
 	}
 

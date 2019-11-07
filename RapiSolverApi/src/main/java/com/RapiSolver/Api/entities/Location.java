@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -38,10 +40,11 @@ public class Location implements Serializable{
 	@Column(name="address", nullable = false)
 	private String address;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "location",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Supplier> suppliers;
     
+	@JsonIgnore
 	@OneToMany(mappedBy = "location",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Customer> customers;
     

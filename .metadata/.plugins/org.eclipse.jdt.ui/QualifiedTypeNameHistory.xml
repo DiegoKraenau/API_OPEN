@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.RapiSolver.Api.repository.IRoleRepository"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.repository.IUsuarioRepository"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.repository.ILocationRepository"/>
@@ -16,7 +15,6 @@
 <fullyQualifiedTypeName name="io.swagger.annotations.Api"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.services.IRoleService"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
 <fullyQualifiedTypeName name="org.springframework.http.MediaType"/>
 <fullyQualifiedTypeName name="io.swagger.annotations.ApiOperation"/>
 <fullyQualifiedTypeName name="io.swagger.annotations.ApiResponses"/>
@@ -46,9 +44,7 @@
 <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
 <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonManagedReference"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.controller.ModelView.UsuarioModelView"/>
-<fullyQualifiedTypeName name="com.RapiSolver.Api.controller.ModelView.DetailModelView"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.entities.DetalleServiceSupplier"/>
-<fullyQualifiedTypeName name="lombok.Data"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.controller.ModelView.CategoryModelView"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.entities.Servicio"/>
@@ -60,4 +56,8 @@
 <fullyQualifiedTypeName name="com.RapiSolver.Api.entities.Supplier"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.services.ISupplierService"/>
+<fullyQualifiedTypeName name="com.RapiSolver.Api.controller.ModelView.DetailModelView"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+<fullyQualifiedTypeName name="lombok.Data"/>
+<fullyQualifiedTypeName name="com.RapiSolver.Api.controller.ModelView.SupplierModelView"/>
 </qualifiedTypeNameHistroy>

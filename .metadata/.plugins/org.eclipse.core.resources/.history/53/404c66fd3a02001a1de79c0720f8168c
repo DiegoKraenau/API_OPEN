@@ -59,10 +59,6 @@ public class SupplierController {
 				s1.setName(supplier.getName());
 				s1.setPhone(supplier.getPhone());
 				s1.setUsuarioId(supplier.getUsuario().getId());
-				s1.setAddress(supplier.getLocation().getAddress());
-				s1.setCity(supplier.getLocation().getCity());
-				s1.setCountry(supplier.getLocation().getCountry());
-				s1.setState(supplier.getLocation().getState());
 				
 				suppliersGroup.add(s1);
 				

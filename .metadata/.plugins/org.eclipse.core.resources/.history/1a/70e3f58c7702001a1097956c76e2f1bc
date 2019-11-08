@@ -52,17 +52,7 @@ public class SupplierController {
 			for (Supplier supplier : suppliers) {
 				SupplierModelView s1=new SupplierModelView();
 				s1.setId(supplier.getId());
-				s1.setAge(supplier.getAge());
-				s1.setEmail(supplier.getEmail());
-				s1.setGender(supplier.getGender());
-				s1.setLastName(supplier.getLastName());
-				s1.setName(supplier.getName());
-				s1.setPhone(supplier.getPhone());
-				s1.setUsuarioId(supplier.getUsuario().getId());
-				s1.setAddress(supplier.getLocation().getAddress());
-				s1.setCity(supplier.getLocation().getCity());
-				s1.setCountry(supplier.getLocation().getCountry());
-				s1.setState(supplier.getLocation().getState());
+				
 				
 				suppliersGroup.add(s1);
 				

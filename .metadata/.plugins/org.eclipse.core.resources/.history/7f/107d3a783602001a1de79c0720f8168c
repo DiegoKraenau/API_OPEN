@@ -222,7 +222,7 @@ public class DetalleServiceSupplierController {
 	}
 	
 	
-	@GetMapping(value="searchByServiceName/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value="searchByServiceName/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Buscar por nombre del servicio" ,notes="Metodo para buscar un detail por el nombre del servicio")
 	@ApiResponses({
 		@ApiResponse(code=201, message="Servicios encontrados"),

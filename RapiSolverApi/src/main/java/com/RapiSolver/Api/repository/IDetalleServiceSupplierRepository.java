@@ -11,5 +11,6 @@ import com.RapiSolver.Api.entities.DetalleServiceSupplier;
 public interface IDetalleServiceSupplierRepository extends JpaRepository<DetalleServiceSupplier, Integer>{
 	
 	Optional<DetalleServiceSupplier> findBydetailId(Integer id) throws Exception;
+	
 
 }

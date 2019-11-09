@@ -1,7 +1,7 @@
 spring:
   datasource:    url: jdbc:postgresql://localhost:5432/RapiOpen
     username: postgres
-    password: diego2009
+    password: admin
     driver-class-name: org.postgresql.Driver
   jpa:    database: postgresql
     hibernate:      ddl-auto: update
@@ -10,5 +10,4 @@ spring:
     properties:      hibernate:
         jdbc:
           lob:
-            non_contextual_creation: true
-            
+            non_contextual_creation: true       

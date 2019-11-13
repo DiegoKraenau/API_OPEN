@@ -57,7 +57,9 @@ public class Supplier implements Serializable{
 	@JoinColumn(name="location_id")
 	private Location location;
 	
-	
 	@OneToMany(mappedBy = "supplierDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<DetalleServiceSupplier> listaDetails;
+	
+	@OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Recommendation> listRecommendations;
 }

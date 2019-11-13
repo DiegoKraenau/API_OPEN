@@ -58,6 +58,6 @@
 <fullyQualifiedTypeName name="com.RapiSolver.Api.services.ISupplierService"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.controller.ModelView.DetailModelView"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-<fullyQualifiedTypeName name="lombok.Data"/>
 <fullyQualifiedTypeName name="com.RapiSolver.Api.controller.ModelView.SupplierModelView"/>
+<fullyQualifiedTypeName name="lombok.Data"/>
 </qualifiedTypeNameHistroy>

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.RapiSolver.Api.controller.ModelView.ServicioModelView;
 import com.RapiSolver.Api.controller.ModelView.SupplierModelView;
 import com.RapiSolver.Api.entities.Supplier;
 import com.RapiSolver.Api.services.ISupplierService;
@@ -144,6 +145,42 @@ public class SupplierController {
 			return new ResponseEntity<Supplier>(HttpStatus.OK);
 		}catch(Exception e){
 			return new ResponseEntity<Supplier>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	@GetMapping(value="/serviciosByUserId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Buscar servicios correspondientes a un supplier", notes="Método para encontrar los servicios de un supplier por el codigo de Usuario")
+	@ApiResponses({
+		@ApiResponse(code=201, message="Servicios encontrados"),
+		@ApiResponse(code=404, message="Servicios no encontrados")
+	})
+	public ResponseEntity<List<ServicioModelView>> serviciosByUserId(@PathVariable("id") Integer id){
+		try {
+		
+			List<ServicioModelView> grupoServicios =supplierService.findServiciosByUserId(id);
+			
+			
+			return new ResponseEntity<List<ServicioModelView>>(grupoServicios, HttpStatus.OK);
+		}catch(Exception e){
+			return new ResponseEntity<List<ServicioModelView>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	@GetMapping(value="/searchByUserId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Buscar Proveedor por codigo de Usuario", notes="Método para buscar proveedor por codigo de Usuario")
+	@ApiResponses({
+		@ApiResponse(code=201, message="Proveedor encontrados"),
+		@ApiResponse(code=404, message="Proveedor no encontrados")
+	})
+	public ResponseEntity<SupplierModelView> searchByUserId(@PathVariable("id") Integer id){
+		try {
+			SupplierModelView supplier = supplierService.findSupplierByUserId(id);
+			
+			return new ResponseEntity<SupplierModelView>(supplier, HttpStatus.OK);
+		}catch(Exception e){
+			return new ResponseEntity<SupplierModelView>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

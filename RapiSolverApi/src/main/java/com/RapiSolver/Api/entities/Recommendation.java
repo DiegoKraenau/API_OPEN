@@ -34,5 +34,5 @@ public class Recommendation {
 	private String Note;
 	
 	@Column(name="mark", nullable = false)
-	private double Mark;
+	private int Mark;
 }

@@ -45,4 +45,6 @@ public class Servicio implements Serializable {
 	@OneToMany(mappedBy = "servicioDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<DetalleServiceSupplier> listaDetails;
 
+	@OneToMany(mappedBy = "servicio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Reservation> reservas;
 }

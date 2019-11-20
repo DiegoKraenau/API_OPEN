@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.RapiSolver.Api.controller.ModelView.UsuarioModelView;
-import com.RapiSolver.Api.entities.Cliente;
+
 import com.RapiSolver.Api.entities.Role;
 import com.RapiSolver.Api.entities.Usuario;
-import com.RapiSolver.Api.services.IClienteService;
+
 import com.RapiSolver.Api.services.IUsuarioService;
 
 import io.swagger.annotations.Api;

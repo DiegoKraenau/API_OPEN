@@ -62,4 +62,7 @@ public class Supplier implements Serializable{
 	
 	@OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Recommendation> listRecommendations;
+	
+	@OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Reservation> reservas;
 }

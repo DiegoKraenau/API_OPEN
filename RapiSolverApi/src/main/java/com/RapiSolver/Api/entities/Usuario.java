@@ -40,4 +40,7 @@ public class Usuario implements Serializable {
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Recommendation> listRecommendations;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Reservation> reservas;
 }

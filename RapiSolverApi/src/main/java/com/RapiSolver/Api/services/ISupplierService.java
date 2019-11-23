@@ -14,4 +14,6 @@ public interface ISupplierService extends CrudService<Supplier>{
 	List<ServicioModelView> findServiciosByUserId(Integer id) throws Exception;
 	
 	SupplierModelView findSupplierByUserId(Integer id) throws Exception;
+	
+	Supplier findByUserId(Integer id) throws Exception;
 }

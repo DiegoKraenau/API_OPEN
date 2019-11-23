@@ -107,4 +107,16 @@ public class SupplierServiceImpl implements ISupplierService{
 		return s1;
 	}
 
+	@Override
+	public Supplier findByUserId(Integer id) throws Exception {
+		List<Supplier> suppliers=suppRepository.findAll();
+		Supplier s1=new Supplier();
+		for (Supplier supplier : suppliers) {
+			if(supplier.getUsuario().getId()==id) {
+				s1=supplier;
+			}
+		}
+		return s1;
+	}
+
 }

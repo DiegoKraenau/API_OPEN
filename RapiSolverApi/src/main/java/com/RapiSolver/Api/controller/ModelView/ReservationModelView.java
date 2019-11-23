@@ -24,4 +24,10 @@ public class ReservationModelView {
 
 
 	private String note;
+	
+	private String nombreProveedor;
+	
+	private String correoSolicitante;
+	
+	private String nombreServicio;
 }

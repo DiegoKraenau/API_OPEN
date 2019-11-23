@@ -1,6 +1,7 @@
 package com.RapiSolver.Api.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,6 +73,24 @@ public class ReservationController {
 			return ResponseEntity.created(location).build();
 		}catch(Exception e){
 			return new ResponseEntity<Reservation>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	
+	
+	@GetMapping(value="/reservationByUserId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Buscar Reservations por codigo de Usuario", notes="Método para buscar reservation por el codigo de Usuario")
+	@ApiResponses({
+		@ApiResponse(code=201, message="Reservations  encontradas"),
+		@ApiResponse(code=404, message="Reservations no encontradas")
+	})
+	public ResponseEntity<List<ReservationModelView>> reservationByUserId(@PathVariable("id") Integer id){
+		try {
+			List<ReservationModelView> grupoReservations=reservationService.findReservationByUserId(id);
+			return new ResponseEntity<List<ReservationModelView>>(grupoReservations, HttpStatus.OK);
+		}catch(Exception e){
+			return new ResponseEntity<List<ReservationModelView>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

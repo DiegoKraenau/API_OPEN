@@ -24,7 +24,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.RapiSolver.Api.controller.ModelView.CustomerModelView;
 import com.RapiSolver.Api.controller.ModelView.SupplierModelView;
 import com.RapiSolver.Api.entities.Customer;
+import com.RapiSolver.Api.entities.Usuario;
 import com.RapiSolver.Api.services.ICustomerService;
+import com.RapiSolver.Api.services.IRoleService;
+import com.RapiSolver.Api.services.IUsuarioService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,6 +41,12 @@ public class CustomerController {
 
 	@Autowired
 	private ICustomerService customerService;
+	
+	@Autowired
+	private IRoleService roleService;
+	
+	@Autowired
+	private IUsuarioService usuarioService;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Listar Clientes", notes="Método para listar todos los clientes")
@@ -79,10 +88,27 @@ public class CustomerController {
 		@ApiResponse(code=201, message="Cliente creado correctamente"),
 		@ApiResponse(code=400, message="Solicitud de creación inválida")
 	})
-	public ResponseEntity<Customer> insertCustomer(@Valid @RequestBody Customer customer){
+	public ResponseEntity<Customer> insertCustomer(@Valid @RequestBody CustomerModelView customer){
 		try {
 			Customer customerNuevo = new Customer();
-			customerNuevo = customerService.save(customer);
+			Customer c1=new Customer();
+			Usuario u1=new Usuario();
+			
+			u1.setUserName(customer.getEmail());
+			u1.setUserPassword(customer.getUserPassword());
+			u1.setRole(roleService.findById(1).get());
+			
+			u1=usuarioService.save(u1);
+			
+			c1.setEmail(customer.getEmail());
+			c1.setName(customer.getName());
+			c1.setLastName(customer.getLastName());
+			c1.setUsuario(u1);
+			//c1.setGender("No tiene sexo");
+			
+			
+			
+			customerNuevo = customerService.save(c1);
 			URI location = ServletUriComponentsBuilder
 					.fromCurrentRequest()
 					.path("/{id}")

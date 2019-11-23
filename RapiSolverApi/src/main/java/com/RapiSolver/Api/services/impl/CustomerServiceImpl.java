@@ -63,17 +63,22 @@ public class CustomerServiceImpl implements ICustomerService{
 		
 		s1.setId(customer.getId());
 		s1.setAge(customer.getAge());
+		
 		s1.setEmail(customer.getEmail());
 		s1.setGender(customer.getGender());
 		s1.setLastName(customer.getLastName());
 		s1.setName(customer.getName());
+		
 		s1.setPhone(customer.getPhone());
 		s1.setUsuarioId(customer.getUsuario().getId());
+		/*
 		s1.setAddress(customer.getLocation().getAddress());
+
 		s1.setCity(customer.getLocation().getCity());
+		
 		s1.setCountry(customer.getLocation().getCountry());
 		s1.setState(customer.getLocation().getState());
-		
+		*/
 		return s1;
 	}
 

@@ -38,13 +38,13 @@ public class Supplier implements Serializable{
 	@Column(name="email", nullable = false)
     private String email;
 
-	@Column(name="phone", nullable = false)
+	@Column(name="phone")
     private String phone;
 
-	@Column(name="age", nullable = false)
+	@Column(name="age")
     private int age;
 
-	@Column(name="gender", nullable = false)
+	@Column(name="gender")
     private String gender;
 
 	

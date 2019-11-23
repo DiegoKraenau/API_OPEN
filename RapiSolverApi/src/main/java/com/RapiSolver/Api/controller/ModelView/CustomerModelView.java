@@ -36,4 +36,6 @@ public class CustomerModelView {
     private String state;
     
     private String address;
+    
+    private String userPassword;
 }

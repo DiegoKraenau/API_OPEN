@@ -37,6 +37,6 @@ public class SupplierModelView {
     
     private String address;
     
-	
+	private String userPassword;
 
 }

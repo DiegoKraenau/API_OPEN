@@ -1,5 +1,6 @@
 package com.RapiSolver.Api.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +45,8 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	@Override
 	public List<Usuario> findAll() throws Exception {
 		
+		
+		
 		return usuarioRepository.findAll();
 	}
 
@@ -58,6 +61,22 @@ public class UsuarioServiceImpl implements IUsuarioService{
 			u1.setUserPassword(usuario.getUserPassword());
 			
 			return u1;
+	}
+
+	@Override
+	public List<UsuarioModelView> findUsers() throws Exception {
+		// TODO Auto-generated method stub
+		List<Usuario> usuarios= usuarioRepository.findAll();
+		List<UsuarioModelView> grupoUsuarios=new ArrayList();
+		for (Usuario usuario2 : usuarios) {
+			UsuarioModelView u1=new UsuarioModelView();
+			u1.setCorreo(usuario2.getUserName());
+			u1.setId(usuario2.getId());
+			u1.setRolId(usuario2.getRole().getId());
+			u1.setUserPassword(usuario2.getUserPassword());
+			grupoUsuarios.add(u1);
+		}
+		return grupoUsuarios;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.RapiSolver.Api.services;
 
+import java.util.List;
+
 import com.RapiSolver.Api.controller.ModelView.SupplierModelView;
 import com.RapiSolver.Api.controller.ModelView.UsuarioModelView;
 import com.RapiSolver.Api.entities.Usuario;
@@ -18,4 +20,6 @@ public interface IUsuarioService extends CrudService<Usuario>{
 	 */
 	
 	UsuarioModelView findByUserId(Integer id) throws Exception;
+	
+	List<UsuarioModelView> findUsers()throws Exception;
 }

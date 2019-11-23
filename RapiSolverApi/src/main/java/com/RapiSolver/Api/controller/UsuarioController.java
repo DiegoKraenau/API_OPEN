@@ -53,17 +53,7 @@ public class UsuarioController {
 	})
 	public ResponseEntity<List<UsuarioModelView>>findAll(){
 		try {
-			List<Usuario> usuarios = new ArrayList<>();
-			usuarios = usuarioService.findAll();
-			List<UsuarioModelView> usuariosGroup=new ArrayList<>();
-			
-			for (Usuario usuario : usuarios) {
-				UsuarioModelView u1=new UsuarioModelView();
-				u1.setId(usuario.getId());
-				u1.setCorreo(usuario.getUserName());
-				
-				usuariosGroup.add(u1);
-			}
+			List<UsuarioModelView> usuariosGroup=usuarioService.findUsers();
 			
 			return new ResponseEntity<List<UsuarioModelView>>(usuariosGroup, HttpStatus.OK);
 		}catch(Exception e){

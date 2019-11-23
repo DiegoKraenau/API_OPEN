@@ -8,4 +8,6 @@ public interface ICustomerService extends CrudService<Customer>{
 
 	
 	CustomerModelView findCustomerByUserId(Integer id) throws Exception;
+	
+	Boolean agregarMembresiaByUserId(Integer id) throws Exception;
 }

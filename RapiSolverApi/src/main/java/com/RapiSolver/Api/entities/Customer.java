@@ -33,21 +33,21 @@ public class Customer  implements Serializable {
 	@Column(name="email", nullable = false)
     private String email;
 
-	@Column(name="phone" )
+	@Column(name="phone", nullable = false )
     private String phone;
 
-	@Column(name="age" )
+	@Column(name="age", nullable = false )
     private int age;
 
-	@Column(name="gender")
+	@Column(name="gender", nullable = false)
     private String gender;
 
 	@OneToOne
-	@JoinColumn(name="usuario_id")
+	@JoinColumn(name="usuario_id", nullable = false)
     private Usuario usuario;
 	
 	@OneToOne
-	@JoinColumn(name="location_id")
+	@JoinColumn(name="location_id", nullable = false)
     private Location location;
     
 

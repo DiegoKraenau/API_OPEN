@@ -17,7 +17,6 @@ INDEX VERSION 1.131+C:\Users\diego\Desktop\API_OPEN\.metadata\.plugins\org.eclip
 3062705803.index
 1240413038.index
 3934913162.index
-4229966941.index
 3904100846.index
 335980427.index
 3808843675.index

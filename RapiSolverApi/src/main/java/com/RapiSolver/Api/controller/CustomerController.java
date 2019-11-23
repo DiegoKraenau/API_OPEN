@@ -24,8 +24,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.RapiSolver.Api.controller.ModelView.CustomerModelView;
 import com.RapiSolver.Api.controller.ModelView.SupplierModelView;
 import com.RapiSolver.Api.entities.Customer;
+import com.RapiSolver.Api.entities.Location;
 import com.RapiSolver.Api.entities.Usuario;
 import com.RapiSolver.Api.services.ICustomerService;
+import com.RapiSolver.Api.services.ILocationService;
 import com.RapiSolver.Api.services.IRoleService;
 import com.RapiSolver.Api.services.IUsuarioService;
 
@@ -47,6 +49,9 @@ public class CustomerController {
 	
 	@Autowired
 	private IUsuarioService usuarioService;
+	
+	@Autowired
+	private ILocationService locationService;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Listar Clientes", notes="Método para listar todos los clientes")
@@ -104,7 +109,16 @@ public class CustomerController {
 			c1.setName(customer.getName());
 			c1.setLastName(customer.getLastName());
 			c1.setUsuario(u1);
-			//c1.setGender("No tiene sexo");
+			c1.setGender("No tiene sexo");
+			c1.setPhone("No tiene telefono");
+			c1.setAge(0);
+			Location l1=new Location();
+			l1.setAddress("Lima");
+			l1.setCity("Lima");
+			l1.setCountry("Lima");
+			l1.setState("Lima");
+			l1=locationService.save(l1);
+			c1.setLocation(l1);
 			
 			
 			
@@ -168,6 +182,23 @@ public class CustomerController {
 			return new ResponseEntity<CustomerModelView>(customer, HttpStatus.OK);
 		}catch(Exception e){
 			return new ResponseEntity<CustomerModelView>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	@GetMapping(value="/{id}/addPackage", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Agregar paquete de membresia", notes="Método para agregar paquete de membresia")
+	@ApiResponses({
+		@ApiResponse(code=201, message="Si se pudo agregar"),
+		@ApiResponse(code=404, message="No se pudo agregar")
+	})
+	public ResponseEntity<Boolean> agregarMembresia(@PathVariable("id") Integer id){
+		try {
+			Boolean var=customerService.agregarMembresiaByUserId(id);
+			
+			return new ResponseEntity<Boolean>(var, HttpStatus.OK);
+		}catch(Exception e){
+			return new ResponseEntity<Boolean>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

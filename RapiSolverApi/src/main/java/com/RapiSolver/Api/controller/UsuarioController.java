@@ -40,22 +40,8 @@ public class UsuarioController {
 
 	@Autowired
 	private IUsuarioService usuarioService;
-	/*
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value="Listar Usuarios", notes="Método para listar todos los Usuarios")
-	@ApiResponses({
-		@ApiResponse(code=201, message="Usuarios encontrados"),
-		@ApiResponse(code=404, message="Usuarios no encontrados")
-	})
-	public ResponseEntity<List<Usuario>>findAll(){
-		try {
-			List<Usuario> usuarios = new ArrayList<>();
-			usuarios = usuarioService.findAll();
-			return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
-		}catch(Exception e){
-			return new ResponseEntity<List<Usuario>>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}*/
+
+
 	
 
 	
@@ -91,15 +77,12 @@ public class UsuarioController {
 		@ApiResponse(code=201, message="Usuario encontrado"),
 		@ApiResponse(code=404, message="Usuario no encontrado")
 	})
-	public ResponseEntity<Usuario> findById(@PathVariable("id") Integer id){
+	public ResponseEntity<UsuarioModelView> findById(@PathVariable("id") Integer id){
 		try {
-			Optional<Usuario> usuario = usuarioService.findById(id);
-			if(!usuario.isPresent()) {
-				return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
-			}
-			return new ResponseEntity<Usuario>(usuario.get(), HttpStatus.OK);
+			 UsuarioModelView usuario=usuarioService.findByUserId(id);
+			return new ResponseEntity<UsuarioModelView>(usuario, HttpStatus.OK);
 		}catch(Exception e){
-			return new ResponseEntity<Usuario>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<UsuarioModelView>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

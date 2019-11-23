@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.RapiSolver.Api.controller.ModelView.CustomerModelView;
+import com.RapiSolver.Api.controller.ModelView.SupplierModelView;
 import com.RapiSolver.Api.entities.Customer;
 import com.RapiSolver.Api.services.ICustomerService;
 
@@ -124,6 +126,22 @@ public class CustomerController {
 			return new ResponseEntity<Customer>(HttpStatus.OK);
 		}catch(Exception e){
 			return new ResponseEntity<Customer>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping(value="/searchByUserId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Buscar Cliente por codigo de Usuario", notes="Método para buscar cliente por codigo de Usuario")
+	@ApiResponses({
+		@ApiResponse(code=201, message="Cliente encontrados"),
+		@ApiResponse(code=404, message="Cliente no encontrados")
+	})
+	public ResponseEntity<CustomerModelView> searchByUserId(@PathVariable("id") Integer id){
+		try {
+			CustomerModelView customer = customerService.findCustomerByUserId(id);
+			
+			return new ResponseEntity<CustomerModelView>(customer, HttpStatus.OK);
+		}catch(Exception e){
+			return new ResponseEntity<CustomerModelView>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }
